@@ -1,0 +1,25 @@
+version: '3.6'
+services:
+  influxdb:
+    build: Dockerfiles/influxdb/.
+    image: tsa-influx-db
+    container_name: tsa-influx-db
+    ports:
+      - "8086:8086"
+    volumes:
+      - type: bind
+        source: ./influxdb
+        target: /var/lib/influxdb
+  chronograf:
+    build: Dockerfiles/chronograf/.
+    image: tsa-chronograf
+    container_name: tsa-chronograf
+    ports:
+      - "8888:8888"
+    volumes:
+      - type: bind
+        source: ./chronograf
+        target: /var/lib/chronograf
+    entrypoint:
+      - chronograf
+      - --influxdb-url=http://influxdb:8086

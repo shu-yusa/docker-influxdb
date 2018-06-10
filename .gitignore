@@ -1,0 +1,6 @@
+*.sw[po]
+*~
+*.DS_Store
+chronograf/*.db
+influxdb/*
+!influxdb/.gitkeep
